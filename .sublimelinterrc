@@ -1,0 +1,13 @@
+{
+  "linters": {
+    "jshint": {
+      "@disable": true
+    },
+    "eslint": {
+      "@disable": false,
+      "args": [],
+      "esversion": 6,
+      "excludes": []
+    }
+  }
+}

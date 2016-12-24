@@ -1,0 +1,33 @@
+{
+  "name": "kalico",
+  "version": "1.0.0",
+  "description": "Space faring and trading game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brisberg/Kalico.git"
+  },
+  "keywords": [
+    "React",
+    "Nodejs",
+    "Express",
+    "Mongodb"
+  ],
+  "author": "Brandon Risberg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brisberg/Kalico/issues"
+  },
+  "homepage": "https://github.com/brisberg/Kalico#readme",
+  "dependencies": {
+    "webpack": "^1.14.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.12.2",
+    "eslint-plugin-react": "^6.8.0"
+  }
+}

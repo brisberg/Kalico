@@ -1,2 +1,2 @@
 # Kalico
-Space faring and trading game building React and NodeExpress
+Space faring and trading game built using React and NodeExpress
