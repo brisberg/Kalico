@@ -1,0 +1,12 @@
+version: '2'
+services:
+  frontend:
+    build: src/client
+    ports:
+     - "3000:3000"
+    volumes:
+     - ./src/client/public:/app/public
+  backend:
+    build: src/server
+    ports:
+     - "3001:3001"

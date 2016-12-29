@@ -10,8 +10,7 @@ COPY package.json /app
 RUN npm install
 COPY app.js /app
 COPY index.html /app
-
-VOLUME /app/public
+COPY public/ /app/public
 
 EXPOSE 3000
 

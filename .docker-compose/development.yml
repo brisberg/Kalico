@@ -1,0 +1,20 @@
+version: '2'
+services:
+  frontend:
+    extends:
+      file: common.yml
+      service: frontend
+    volumes:
+      - ../src/client/public:/app/public
+  backend:
+    extends:
+      file: common.yml
+      service: backend
+    links:
+      - db
+    environment:
+      - DATABASE_URL=mongodb://localhost/kalico-db
+  db:
+    extends:
+      file: common.yml
+      service: db
