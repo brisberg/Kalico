@@ -8,7 +8,7 @@ WORKDIR /server
 COPY package.json /server
 RUN npm install
 
-COPY server.js /server
+COPY . /server
 
 EXPOSE 3001
 

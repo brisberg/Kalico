@@ -3,10 +3,10 @@ services:
   frontend:
     build: ../src/client
     ports:
-     - "3000:3000"
+        - "3000:3000"
   backend:
     build: ../src/server
     ports:
-     - "3001:3001"
+        - "3001:3001"
   db:
     image: mongo:3.0

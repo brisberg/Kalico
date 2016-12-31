@@ -13,8 +13,10 @@ services:
     links:
       - db
     environment:
-      - DATABASE_URL=mongodb://localhost/kalico-db
+      - DATABASE_URL=mongodb://db/kalico_db
   db:
     extends:
       file: common.yml
       service: db
+    volumes:
+      - ../volumes/mongodb:/data/db

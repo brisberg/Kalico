@@ -38,3 +38,6 @@ jspm_packages
 
 #Sublime Text config
 *.sublime-workspace
+
+# Docker volume mounts
+volumes
