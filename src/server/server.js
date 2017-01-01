@@ -8,6 +8,26 @@ var Thing = require('./models/thingModel');
 // db bootstrap
 require('./config/database')(process.env.DATABASE_URL || 'mongodb://db/kalico_db');
 
+app.get('/api/things/create', function(req, res, next){
+  if (!req.query.count) {
+    res.status(403).send({ error: 'Must supply count query param' })
+    next()
+  }
+
+  var thing = Thing({
+    count: req.query.count
+  })
+
+  thing.save(function(err) {
+    if (err) throw next(err);
+
+    console.log('Thing created!');
+    res.type('application/json');
+    res.send(thing)
+    next()
+  });
+});
+
 app.get('/api/things', function(req, res, next){
   Thing.find({}, function (err, records) {
     if (err) return next(err);
