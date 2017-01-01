@@ -1,31 +1,58 @@
 /**
  * REST API server to support the frontend
  */
+var bodyParser = require('body-parser')
 var express = require('express');
 var app = express();
 var Thing = require('./models/thingModel');
 
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
+
 // db bootstrap
 require('./config/database')(process.env.DATABASE_URL || 'mongodb://db/kalico_db');
 
-app.get('/api/things/create', function(req, res, next){
-  if (!req.query.count) {
-    res.status(403).send({ error: 'Must supply count query param' })
-    next()
+app.post('/api/things', function(req, res, next){
+  var count = req.body.count;
+
+  if (!count) {
+    res.status(400).send({ error: 'Must supply \'count\' post param' })
+    return
   }
 
   var thing = Thing({
-    count: req.query.count
+    count: count
   })
 
   thing.save(function(err) {
     if (err) throw next(err);
 
-    console.log('Thing created!');
     res.type('application/json');
-    res.send(thing)
-    next()
+    res.status(200).send(thing)
   });
+});
+
+app.delete('/api/things/:id', function(req, res, next){
+  var id = req.params.id
+
+  if (!id) {
+    res.status(404).send({ error: 'Must sypply \'id\' url param' })
+    return
+  }
+
+  Thing.findByIdAndRemove(id, function (err, thing){
+    if(err) return next(err);
+
+    if (!thing) {
+      res.status(404).send({ error: 'No document found for id:' + id })
+    }
+    else {
+      res.type('application/json');
+      res.status(200).send(thing)
+    }
+  })
 });
 
 app.get('/api/things', function(req, res, next){
@@ -33,7 +60,7 @@ app.get('/api/things', function(req, res, next){
     if (err) return next(err);
 
     res.type('application/json');
-    res.send(records);
+    res.status(200).send(records);
   });
 });
 
