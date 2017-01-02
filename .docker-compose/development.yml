@@ -14,6 +14,9 @@ services:
       - db
     environment:
       - DATABASE_URL=mongodb://db/kalico_db
+    volumes:
+      - ../src/server:/server
+    command: node_modules/.bin/nodemon server.js
   db:
     extends:
       file: common.yml
