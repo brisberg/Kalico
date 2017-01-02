@@ -4,6 +4,8 @@ services:
     extends:
       file: common.yml
       service: frontend
+    links:
+      - backend
     volumes:
       - ../src/client/public:/app/public
   backend:

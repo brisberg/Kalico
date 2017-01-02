@@ -14,6 +14,14 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 // db bootstrap
 require('./config/database')(process.env.DATABASE_URL || 'mongodb://db/kalico_db');
 
+// Enable CORS from the frontend
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Methods', ['GET', 'POST', 'DELETE']);
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 app.post('/api/things', function(req, res, next){
   var count = req.body.count;
 
@@ -38,7 +46,7 @@ app.delete('/api/things/:id', function(req, res, next){
   var id = req.params.id
 
   if (!id) {
-    res.status(404).send({ error: 'Must sypply \'id\' url param' })
+    res.status(404).send({ error: 'Must supply \'id\' url param' })
     return
   }
 

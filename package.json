@@ -2,10 +2,11 @@
   "name": "kalico",
   "version": "1.0.0",
   "description": "Space faring and trading game",
-  "main": "index.js",
+  "main": "src/server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "./node_modules/.bin/webpack"
+    "webpack": "./node_modules/.bin/webpack",
+    "webpack:watch": "./node_modules/.bin/webpack --watch"
   },
   "repository": {
     "type": "git",
